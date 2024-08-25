@@ -45,7 +45,7 @@ export class ReturnPackageController {
 
   @Patch()
   @HttpCode(204)
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('photo'))
   async handle(
     @ExclusiveRoute([UserRole.RECIPIENT]) user: UserPayload,
     @Body(bodyValidationPipe) body: ReturnPackageBodySchema,

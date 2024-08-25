@@ -45,7 +45,7 @@ export class PickupPackageController {
 
   @Patch()
   @HttpCode(204)
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('photo'))
   async handle(
     @ExclusiveRoute([UserRole.DELIVERYMAN]) user: UserPayload,
     @Body(bodyValidationPipe) body: PickupPackageBodySchema,
