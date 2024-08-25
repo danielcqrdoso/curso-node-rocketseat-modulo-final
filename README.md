@@ -1,3 +1,11 @@
+![image](https://github.com/user-attachments/assets/67b6333b-e01c-4609-af9f-d77bafdef242) </br>
+FastFeet é um projeto back-end do curso de node.js da Rocketseat.</br>
+O "site" permite o cadastro de entregadores, que podem gerenciar e realizar entregas de encomendas.</br>
+Além disso, os destinatários podem acompanhar o status de suas encomendas e até devolve-lás através da plataforma.</br>
+Os administradores têm a capacidade de monitorar o trabalho dos entregadores e gerenciar as notificações enviadas a eles pela plataforma.</br>
+Todas as informações importantes sobre a entrega das encomendas são enviadas por e-mail para as partes envolvidas.</br>
+Além disso, a plataforma registra todas as notificações enviadas, além do horario de cada atualização na entrega.</br>
+Ao todo são 17 rotas HTTP.</br>
 Rotas:</br>
 users:</br>
 
@@ -67,7 +75,7 @@ users:</br>
   
   packages:</br>
 
-    [Patch] /package/available-pickup - rota para o entregador deixar nos correios:
+    [Patch] /package/available-pickup - rota para o entregador deixar na trasportadora:
         token de autenticação
         packageId: string
         latitude: number
