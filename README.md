@@ -98,7 +98,7 @@ accounts:</br>
         packageId: string
         latitude: number
         longitude: number
-        foto: PNG | JPG | JPEG
+        photo: PNG | JPG | JPEG
 
     [POST] /package/track - Rota para rastrear/procurar/pesquiar encomenda
         token de autenticação
@@ -118,4 +118,4 @@ accounts:</br>
         packageId: string
         latitude: number
         longitude: number
-        foto: PNG | JPG | JPEG
+        photo: PNG | JPG | JPEG
