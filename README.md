@@ -7,7 +7,7 @@ Todas as informações importantes sobre a entrega das encomendas são enviadas 
 Além disso, a plataforma registra todas as notificações enviadas, além do horario de cada atualização na entrega.</br>
 Ao todo são 17 rotas HTTP.</br>
 Rotas:</br>
-users:</br>
+accounts:</br>
 
     [POST] /accounts/sessions - rota para logar:
         cpf: string,
