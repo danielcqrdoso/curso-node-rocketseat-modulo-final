@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  DELIVERYMAN
+  RECIPIENT
+}
+
+enum PackageStatus {
+  returned
+  pickup
+  availablePickup
+  delivered
+  waiting
+}
+
+enum FileType {
+  PNG
+  JPG
+  JPEG
+}
+
+model User {
+  id        String   @id @default(uuid())
+  cpf       String   @unique
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole
+  latitude  Float
+  longitude Float
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  deliveredPackages Package[] @relation("deliveryPerson")
+  receivedPackage   Package[] @relation("recipient")
+
+  adminId      String?
+  admin        User?          @relation("adminId", fields: [adminId], references: [id])
+  User         User[]         @relation("adminId")
+  Notification Notification[] @relation("adminId")
+
+  @@map("users")
+}
+
+model Package {
+  id              String        @id @default(uuid())
+  productQuantity Int           @default(1)
+  fileName        String?       @unique
+  fileType        FileType?
+  fileBody        Bytes?
+  status          PackageStatus
+  latitude        Float
+  longitude       Float
+  isDeleted       Boolean       @default(false)
+
+  createdAt         DateTime  @default(now())
+  deliveryAt        DateTime?
+  availablePickupAt DateTime?
+  pickupAt          DateTime?
+  returnedAt        DateTime?
+  deletedAt         DateTime?
+
+  deliveryPersonId String?
+  recipientId      String
+  productId        String
+
+  deliveryPerson User?   @relation("deliveryPerson", fields: [deliveryPersonId], references: [id])
+  recipient      User    @relation("recipient", fields: [recipientId], references: [id])
+  product        Product @relation(fields: [productId], references: [id])
+
+  @@map("packages")
+}
+
+model Product {
+  id          String @id @default(uuid())
+  name        String
+  description String
+  latitude    Float
+  longitude   Float
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  package Package[]
+
+  @@map("products")
+}
+
+model Notification {
+  id      String   @id @default(uuid())
+  emails  String[]
+  title   String
+  content String
+
+  adminId String?
+  admin   User?   @relation("adminId", fields: [adminId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@map("notifications")
+}
