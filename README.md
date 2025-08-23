@@ -105,7 +105,7 @@ accounts:</br>
         packageId: string
         latitude: number
         longitude: number
-        isDelted: booleano
+        isDeleted: booleano
         status: PackageStatus
         page: string
         limit: string
