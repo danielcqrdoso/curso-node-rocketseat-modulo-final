@@ -53,10 +53,13 @@ export class AuthenticateController {
       }
     }
 
-    const { accessToken } = result.value
+    const { accessToken, email, cpf, name } = result.value
 
     return {
       access_token: accessToken,
+      email,
+      cpf,
+      name,
     }
   }
 }

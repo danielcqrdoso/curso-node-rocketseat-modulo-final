@@ -18,6 +18,9 @@ type AuthenticateUserUseCaseResponse = Either<
   WrongCredentialsError | NotFoundError,
   {
     accessToken: string
+    email: string
+    name: string
+    cpf: string
   }
 >
 
@@ -60,6 +63,9 @@ export class AuthenticateUserUseCase {
 
     return right({
       accessToken,
+      email: user.email,
+      name: user.name,
+      cpf: user.cpf,
     })
   }
 }
